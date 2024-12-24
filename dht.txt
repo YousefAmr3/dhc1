@@ -1,0 +1,28 @@
+#include <DHT.h>
+#define DHTpin A0
+#define DHTtype DHT11
+#define fanPIN 6
+
+DHT dht(DHTpin, DHTtype);
+
+void setup() {
+  pinMode(fanPIN, OUTPUT);
+  digitalWrite(fanPIN, LOW);
+  Serial.begin(9600);
+  dht.begin();
+}
+
+void loop() {
+  float temp = dht.readTemperature();
+  if (isnan(temp)) {
+    return;
+  }
+  Serial.print("Temperature: ");
+  Serial.println(temp);
+  if (temp > 20.0) {
+    digitalWrite(fanPIN, HIGH);
+  } else {
+    digitalWrite(fanPIN, LOW);
+  }
+  delay(2000);
+}
