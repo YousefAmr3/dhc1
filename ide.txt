@@ -1,0 +1,32 @@
+char receivedChar;
+
+void setup() {
+  Serial.begin(9600);
+
+  // ≈⁄œ«œ «·„‰«›– ··√÷Ê«¡
+  pinMode(7, OUTPUT);  // LED «·√Õ„—
+  pinMode(8, OUTPUT);  // LED «·√Œ÷—
+  pinMode(9, OUTPUT); // LED «·√’›—
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    receivedChar = Serial.read();  // ﬁ—«¡… «·»Ì«‰«  «·ﬁ«œ„… „‰ Python
+
+    // ≈ÿ›«¡ Ã„Ì⁄ «·√÷Ê«¡ √Ê·«
+    digitalWrite(8, LOW);
+    digitalWrite(9, LOW);
+    digitalWrite(10, LOW);
+
+    // «· ⁄«„· „⁄ «·√·Ê«‰ «·„ﬂ ‘›…
+    if (receivedChar == 'R') {
+      digitalWrite(8, HIGH);  //  ‘€Ì· LED «·√Õ„—
+    } 
+    else if (receivedChar == 'G') {
+      digitalWrite(9, HIGH);  //  ‘€Ì· LED «·√Œ÷—
+    } 
+    else if (receivedChar == 'Y') {
+      digitalWrite(10, HIGH); //  ‘€Ì· LED «·√’›—
+    }
+  }
+}
